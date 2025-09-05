@@ -1,12 +1,12 @@
 package ast;
 
 public class ForNode implements StmtNode {
-    public final ExprStmtNode init;
-    public final ExprStmtNode condition;
+    public final ASTNode init;
+    public final ExprNode condition;
     public final ExprNode update;
     public final StmtNode body;
 
-    public ForNode(ExprStmtNode init, ExprStmtNode condition, ExprNode update, StmtNode body) {
+    public ForNode(ASTNode init, ExprNode condition, ExprNode update, StmtNode body) {
         this.init = init;
         this.condition = condition;
         this.update = update;

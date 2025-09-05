@@ -135,8 +135,15 @@ public class ObfuscatorVisitor implements ASTVisitor<String> {
 
     @Override
     public String visit(ForNode node) {
-        String init = node.init.expr != null ? node.init.expr.accept(this) : "";
-        String cond = node.condition.expr != null ? node.condition.expr.accept(this) : "";
+        String init = "";
+        if(node.init != null) {
+            init = node.init.accept(this);
+            if(!init.endsWith(";")){
+                init += ";";
+            }
+            init = init.substring(0 , init.length() - 1);
+        }
+        String cond = node.condition != null ? node.condition.accept(this) : "";
         String update = node.update != null ? node.update.accept(this) : "";
         return "for (" + init + "; " + cond + "; " + update + ") " + node.body.accept(this);
     }

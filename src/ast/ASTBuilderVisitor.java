@@ -81,11 +81,24 @@ public class ASTBuilderVisitor extends MiniCBaseVisitor<ASTNode> {
 
     @Override
     public ASTNode visitForSt(MiniCParser.ForStContext ctx) {
-        ExprStmtNode init = (ExprStmtNode) visit(ctx.exprSt(0));
-        ExprStmtNode cond = (ExprStmtNode) visit(ctx.exprSt(1));
-        ExprNode update = ctx.expr() != null ? (ExprNode) visit(ctx.expr()) : null;
+        ASTNode init = null;
+        ExprNode condition = null;
+        ExprNode update = null;
+        if(ctx.varDecl() != null) {
+            init = visit(ctx.varDecl());
+        }else if(ctx.expr(0) != null){
+            init = new ExprStmtNode((ExprNode) visit(ctx.expr(0)));
+        }
+        int condIndex = ctx.varDecl() != null ? 0 : 1;
+        if (ctx.expr(condIndex) != null) {
+            condition = (ExprNode) visit(ctx.expr(condIndex));
+        }
+        int updateIndex = ctx.varDecl() != null ? 1 : 2;
+        if (ctx.expr(updateIndex) != null) {
+            update = (ExprNode) visit(ctx.expr(updateIndex));
+        }
         StmtNode body = (StmtNode) visit(ctx.statement());
-        return new ForNode(init, cond, update, body);
+        return new ForNode(init, condition, update, body);
     }
 
     @Override

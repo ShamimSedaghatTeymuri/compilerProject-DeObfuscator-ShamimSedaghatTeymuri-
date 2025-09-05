@@ -94,7 +94,7 @@ whileSt
     ;
 
 forSt
-    : FOR LPAREN exprSt exprSt expr? RPAREN statement
+    : FOR LPAREN (varDecl | expr? SEMI) expr? SEMI expr? RPAREN statement
     ;
 
 returnSt

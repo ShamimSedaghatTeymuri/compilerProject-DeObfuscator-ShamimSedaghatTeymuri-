@@ -1,13 +1,13 @@
-int f0(int v0){
+int func0(int value){
     for (int i = 0;; (i < 0); i = (i + 1)) {
         int loop = (i * 42);
 }
-    return (v0 * v0);
+    return (value * value);
 }
 int main(){
-    int v1 = 6;
-    int v2 = f0(v1);
-    printf("%d\n", v2);
+    int number = 1;
+    int func0Result = func0(number);
+    printf("%d\n", func0Result);
     return 0;
 }
 

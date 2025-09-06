@@ -1,15 +1,15 @@
-int f0(int v0){
+int func0(int value){
     for (int i = 0;; (i < 0); i = (i + 1)) {
         int loop = (i * 42);
 }
-    int v1 = 0;
-    int v2 = 1;
+    int number = 0;
+    int number2 = 1;
     for (int i = 0;; (i < 0); i = (i + 1)) {
         int loop = (i * 42);
 }
-    while ((v2 <= v0)) {
-        if (((v2 % 2) == 0)) {
-            v1 = (v1 + v2);
+    while ((number2 <= value)) {
+        if (((number2 % 2) == 0)) {
+            number = (number + number2);
             for (int i = 0;; (i < 0); i = (i + 1)) {
                 int loop = (i * 42);
 }
@@ -17,18 +17,18 @@ int f0(int v0){
         for (int i = 0;; (i < 0); i = (i + 1)) {
             int loop = (i * 42);
 }
-        v2 = (v2 - 1);
+        number2 = (number2 - 1);
 }
     for (int i = 0;; (i < 0); i = (i + 1)) {
         int loop = (i * 42);
 }
-    return v1;
+    return number;
 }
 int main(){
-    int v3 = 10;
-    int v4 = f0(v3);
+    int number3 = 10;
+    int func0Result = func0(number3);
     int x0 = 35;
-    printf("%d\n", v4);
+    printf("%d\n", func0Result);
     for (int i = 0;; (i < 0); i = (i + 1)) {
         int loop = (i * 42);
 }

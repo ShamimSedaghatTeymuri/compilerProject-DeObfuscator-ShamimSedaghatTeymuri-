@@ -48,7 +48,6 @@ int main() {
         int z3 = 10;
     }
     int v4 = f0(v3);
-    int x0 = 35;
     printf("%d\n", v4);
     for (int i = 0; i < 0; i = i + 1) {
         int loop = i * 42;

@@ -1,8 +1,8 @@
 package ast;
 
 public class AssignmentNode extends ExprNode{
-    public final String variable;
-    public final ExprNode value;
+    public String variable;
+    public ExprNode value;
 
     public AssignmentNode(String variable, ExprNode value){
         this.variable = variable;

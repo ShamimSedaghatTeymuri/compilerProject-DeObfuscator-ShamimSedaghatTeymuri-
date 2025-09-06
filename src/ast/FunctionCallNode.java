@@ -3,8 +3,8 @@ package ast;
 import java.util.List;
 
 public class FunctionCallNode extends ExprNode {
-    public final String name;
-    public final List<ExprNode> args;
+    public String name;
+    public List<ExprNode> args;
 
     public FunctionCallNode(String name, List<ExprNode> args) {
         this.name = name;

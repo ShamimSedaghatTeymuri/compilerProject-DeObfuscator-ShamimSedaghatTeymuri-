@@ -1,22 +1,16 @@
-int f0(int v0, int v1){
+int func0(int value, int value2){
     int x0 = 79;
-    if ((v0 > v1)) {
-        return v0;
+    if ((value > value2)) {
+        return value;
 } else {
-        return v1;
-        for (int i = 0;; (i < 0); i = (i + 1)) {
-            int loop = (i * 42);
-}
+        return value2;
 }
 }
 int main(){
-    int v2 = 5;
-    int v3 = 9;
-    int v4 = f0(v2, v3);
-    printf("%d\n", v4);
+    int number = 5;
+    int number2 = 9;
+    int func0Result = func0(number, number2);
+    printf("%d\n", func0Result);
     return 0;
-    for (int i = 0;; (i < 0); i = (i + 1)) {
-        int loop = (i * 42);
-}
 }
 

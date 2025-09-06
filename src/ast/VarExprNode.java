@@ -1,7 +1,7 @@
 package ast;
 
 public class VarExprNode extends ExprNode {
-    public final String name;
+    public String name;
 
     public VarExprNode(String name) {
         this.name = name;

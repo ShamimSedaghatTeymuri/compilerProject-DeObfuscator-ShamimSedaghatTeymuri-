@@ -1,5 +1,5 @@
 int main(){
-    for (int v0 = 0;; (v0 < 3); v0 = v0) {
+    for (int v0 = 0;; (v0 < 3); v0 = (v0 + 1)) {
         printf("%d\n", v0);
 }
     int v1 = 0;

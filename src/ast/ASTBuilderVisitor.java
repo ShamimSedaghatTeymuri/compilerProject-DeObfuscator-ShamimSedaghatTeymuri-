@@ -21,7 +21,6 @@ public class ASTBuilderVisitor extends MiniCBaseVisitor<ASTNode> {
         return new ProgramNode(declarations);
     }
 
-
     @Override
     public ASTNode visitFunctionDecl(MiniCParser.FunctionDeclContext ctx) {
         String type = ctx.type().getText();
@@ -155,7 +154,6 @@ public class ASTBuilderVisitor extends MiniCBaseVisitor<ASTNode> {
             return new VarExprNode(ctx.ID().getText());
         }
 
-
         if (ctx.NUMBER() != null || ctx.CHAR_LITERAL() != null || ctx.FALSE() != null || ctx.TRUE() != null) {
             return new LiteralExprNode(ctx.getText());
         }
@@ -173,7 +171,4 @@ public class ASTBuilderVisitor extends MiniCBaseVisitor<ASTNode> {
         }
         return new FunctionCallNode(name, args);
     }
-
 }
-
-

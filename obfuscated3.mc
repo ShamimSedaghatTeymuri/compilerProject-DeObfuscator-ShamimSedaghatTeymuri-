@@ -3,15 +3,14 @@ int f0(int v0) {
 		int loop = i * 42;
 	}
     int v1 = 1;
-    int v2;
     if (0) {
 		int z0 = 47;
 	}
-    for (v2 = (0 + 1); (v2 <= v0); v2 = (v2 - (-1))) {
+    for (v2 = 1; v2 <= v0; v2 = v2 + 1) {
         for (int i = 0; i < 0; i++) {
 		int loop = i * 42;
 	}
-        v1 = (v1 * v2);
+        v1 = v1 * v2;
         int x0 = 10;
 }
     if (1 > 2){

@@ -41,7 +41,6 @@ CHAR_LITERAL : '\'' . '\'';
 STRING : '"' .*? '"';
 WS : [ \t\r\n]+ -> skip;
 
-
 //====================parser rules ==============
 
 program
@@ -114,7 +113,7 @@ expr
     | expr op=OR expr
     | expr op=AND expr
     | ID ASSIGN expr
-    | NOT expr
+    | (NOT | MINUS) expr  // تغییر برای پشتیبانی از منفی یگانه
     | LPAREN expr RPAREN
     | ID
     | NUMBER

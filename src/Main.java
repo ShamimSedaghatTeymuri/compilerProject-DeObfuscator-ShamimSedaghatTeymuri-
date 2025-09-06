@@ -17,6 +17,7 @@ public class Main {
     public static final String ANSI_CYAN = "\u001B[36m";
 
     public static void main(String[] args) {
+        // حالت اول: مبهم کردن فایل‌های اصلی
         for (int i = 1; i <= 5; i++) {
             try {
                 String inputFile = "input" + i + ".mc";
@@ -30,6 +31,7 @@ public class Main {
             }
         }
 
+        // حالت دوم: غیر مبهم کردن فایل‌های مبهم شده
         for (int i = 1; i <= 5; i++) {
             try {
                 String obfuscatedInputFile = "obfuscated" + i + ".mc";

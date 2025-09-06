@@ -1,6 +1,6 @@
 int f0(int v0, int v1) {
     int x0 = 79;
-    if ((v0 > v1)) {
+    if (v0 > v1) {
         if (1 > 2){
 		int y0 = 7;
 	}

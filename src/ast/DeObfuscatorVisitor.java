@@ -100,13 +100,6 @@ public class DeObfuscatorVisitor implements ASTVisitor<ASTNode> {
             return null;
         }
 
-        if (newInit instanceof VarDeclNode) {
-            List<StmtNode> statements = new ArrayList<>();
-            statements.add((StmtNode) newInit);
-            statements.add(new ForNode(null, newCond, newUpdate, newBody));
-            return new BlockNode(statements);
-        }
-
         return new ForNode(newInit, newCond, newUpdate, newBody);
     }
 
@@ -128,15 +121,21 @@ public class DeObfuscatorVisitor implements ASTVisitor<ASTNode> {
 
     @Override
     public ASTNode visit(BinaryExprNode node) {
+        if (node.right == null) {
+            return node.left != null ? node.left.accept(this) : node;
+        }
+
         ExprNode left = (ExprNode) node.left.accept(this);
         ExprNode right = (ExprNode) node.right.accept(this);
         String op = node.op;
 
+        // Constant folding
         Integer constantValue = evaluateConstantExpr(new BinaryExprNode(left, op, right));
         if (constantValue != null) {
             return new LiteralExprNode(constantValue.toString());
         }
 
+        // Simplification rules
         if (op.equals("+")) {
             if (isZero(left)) {
                 return right;
@@ -164,6 +163,7 @@ public class DeObfuscatorVisitor implements ASTVisitor<ASTNode> {
                 return new LiteralExprNode("0");
             }
         } else if (op.equals("<<")) {
+            // Convert left shift to multiplication if possible
             if (right instanceof LiteralExprNode) {
                 try {
                     int shift = Integer.parseInt(((LiteralExprNode) right).value);
@@ -172,9 +172,11 @@ public class DeObfuscatorVisitor implements ASTVisitor<ASTNode> {
                         return new BinaryExprNode(left, "*", new LiteralExprNode(String.valueOf(multiplier)));
                     }
                 } catch (NumberFormatException e) {
+                    // ignore
                 }
             }
         } else if (op.equals(">>")) {
+            // Convert right shift to division if possible
             if (right instanceof LiteralExprNode) {
                 try {
                     int shift = Integer.parseInt(((LiteralExprNode) right).value);
@@ -183,10 +185,10 @@ public class DeObfuscatorVisitor implements ASTVisitor<ASTNode> {
                         return new BinaryExprNode(left, "/", new LiteralExprNode(String.valueOf(divisor)));
                     }
                 } catch (NumberFormatException e) {
+                    // ignore
                 }
             }
         }
-
         return new BinaryExprNode(left, op, right);
     }
 
@@ -195,11 +197,13 @@ public class DeObfuscatorVisitor implements ASTVisitor<ASTNode> {
         ExprNode operand = (ExprNode) node.operand.accept(this);
         String op = node.operator;
 
+        // Constant folding
         Integer constantValue = evaluateConstantExpr(new UnaryExprNode(op, operand));
         if (constantValue != null) {
             return new LiteralExprNode(constantValue.toString());
         }
 
+        // Simplification: -(-x) -> x
         if (op.equals("-") && operand instanceof UnaryExprNode && ((UnaryExprNode) operand).operator.equals("-")) {
             return ((UnaryExprNode) operand).operand;
         }
@@ -226,6 +230,7 @@ public class DeObfuscatorVisitor implements ASTVisitor<ASTNode> {
         return new FunctionCallNode(node.name, newArgs);
     }
 
+    // Helper methods
     private boolean isZero(ExprNode expr) {
         if (expr instanceof LiteralExprNode) {
             String value = ((LiteralExprNode) expr).value;

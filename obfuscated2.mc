@@ -1,4 +1,3 @@
-#include <stdio.h>
 int f0(int v0, int v1) {
     int x0 = 79;
     if ((v0 > v1)) {

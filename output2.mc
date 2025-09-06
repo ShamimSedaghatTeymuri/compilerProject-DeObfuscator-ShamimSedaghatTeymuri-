@@ -3,11 +3,11 @@ int f0(int v0, int v1) {
 		int loop = i * 42;
 	}
     if ((v0 > v1)) {
-        for (int i = 0; i < 0; i++) {
-		int loop = i * 42;
-	}
+        int x0 = 94;
         return v0;
-        int x0 = 0;
+        if (0) {
+		int z0 = 66;
+	}
 } else {
         for (int i = 0; i < 0; i++) {
 		int loop = i * 42;
@@ -16,23 +16,25 @@ int f0(int v0, int v1) {
 }
 }
 int main() {
-    if (0) {
-		int z0 = 88;
+    if (1 > 2){
+		int y0 = 9;
 	}
     int v2 = 5;
     for (int i = 0; i < 0; i++) {
 		int loop = i * 42;
 	}
     int v3 = 9;
-    if (1 > 2){
-		int y0 = 7;
+    if (0) {
+		int z1 = 91;
 	}
     int v4 = f0(v2, v3);
     for (int i = 0; i < 0; i++) {
 		int loop = i * 42;
 	}
     printf("%d\n", v4);
-    int x1 = 30;
+    for (int i = 0; i < 0; i++) {
+		int loop = i * 42;
+	}
     return 0;
 }
 

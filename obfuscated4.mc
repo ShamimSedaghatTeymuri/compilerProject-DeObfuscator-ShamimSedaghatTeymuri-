@@ -8,8 +8,10 @@ int main() {
     if (1 > 2){
         int y0 = 3;
     }
-    int v1 = 6 << 1;
+    int v1 = 6 << 2;
     int v2 = f0(v1);
+    int v3 = v1 - (-v2);
+    int v4 = v2 - (+v3);
     if (0) {
         int z0 = 58;
     }

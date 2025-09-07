@@ -33,7 +33,7 @@ public class ObfuscatorVisitor implements ASTVisitor<String> {
             case 0 -> "int x" + xCount++ + " = " + r.nextInt(100) + ";";
             case 1 -> "if (0) {\n\t\tint z" + zCount++ + " = " + r.nextInt(100) + ";\n\t}";
             case 2 -> "if (1 > 2){\n\t\tint y" + yCount++ + " = " + r.nextInt(10) + ";\n\t}";
-            case 3 -> "for (int i = 0; i < 0; i++) {\n\t\tint loop = i * 42;\n\t}";
+            case 3 -> "for (int i = 0; i < 0; i = i + 1) {\n\t\tint loop = i * 42;\n\t}";
             default -> "//dead code";
         };
     }

@@ -114,7 +114,7 @@ expr
     | expr op=OR expr
     | expr op=AND expr
     | ID ASSIGN expr
-    | (NOT | MINUS) expr
+    | (NOT | MINUS | PLUS) expr
     | LPAREN expr RPAREN
     | ID
     | NUMBER

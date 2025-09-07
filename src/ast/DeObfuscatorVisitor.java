@@ -321,11 +321,58 @@ public class DeObfuscatorVisitor implements ASTVisitor<ASTNode> {
         ExprNode newUpdate = node.update != null ? (ExprNode) node.update.accept(this) : null;
         StmtNode newBody = (StmtNode) node.body.accept(this);
 
+        // Check if condition is constant false → حذف کامل حلقه
         if (newCond != null && isConstantFalse(newCond)) {
             return null;
         }
 
+        // Check for common dead loop patterns
+        if (newInit instanceof VarDeclNode && newCond != null) {
+            VarDeclNode initVar = (VarDeclNode) newInit;
+            if (isAlwaysFalseLoop(initVar, newCond)) {
+                return null;
+            }
+        }
+
         return new ForNode(newInit, newCond, newUpdate, newBody);
+    }
+
+    private boolean isAlwaysFalseLoop(VarDeclNode initVar, ExprNode cond) {
+        if (initVar.initializer instanceof LiteralExprNode) {
+            LiteralExprNode initLit = (LiteralExprNode) initVar.initializer;
+            try {
+                int initValue = Integer.parseInt(initLit.value);
+                if (cond instanceof BinaryExprNode) {
+                    BinaryExprNode binCond = (BinaryExprNode) cond;
+                    if (binCond.left instanceof VarExprNode) {
+                        VarExprNode var = (VarExprNode) binCond.left;
+                        if (var.name.equals(initVar.name)) {
+                            if (binCond.right instanceof LiteralExprNode) {
+                                LiteralExprNode rightLit = (LiteralExprNode) binCond.right;
+                                int rightValue = Integer.parseInt(rightLit.value);
+                                String op = binCond.op;
+                                switch (op) {
+                                    case "<":
+                                        return initValue >= rightValue;
+                                    case "<=":
+                                        return initValue > rightValue;
+                                    case ">":
+                                        return initValue <= rightValue;
+                                    case ">=":
+                                        return initValue < rightValue;
+                                    case "==":
+                                        return initValue != rightValue;
+                                    case "!=":
+                                        return initValue == rightValue;
+                                }
+                            }
+                        }
+                    }
+                }
+            } catch (NumberFormatException e) {
+            }
+        }
+        return false;
     }
 
     @Override
@@ -370,6 +417,18 @@ public class DeObfuscatorVisitor implements ASTVisitor<ASTNode> {
         Integer constantValue = evaluateConstantExpr(new BinaryExprNode(left, op, right));
         if (constantValue != null) {
             return new LiteralExprNode(constantValue.toString());
+        }
+
+        if (op.equals("-") && right instanceof UnaryExprNode unaryRight) {
+            if (unaryRight.operator.equals("-")) {
+                return new BinaryExprNode(left, "+", unaryRight.operand);
+            }
+        }
+
+        if (op.equals("+") && right instanceof UnaryExprNode unaryRight) {
+            if (unaryRight.operator.equals("-")) {
+                return new BinaryExprNode(left, "-", unaryRight.operand);
+            }
         }
 
         if (op.equals("+")) {
@@ -420,6 +479,10 @@ public class DeObfuscatorVisitor implements ASTVisitor<ASTNode> {
         Integer constantValue = evaluateConstantExpr(new UnaryExprNode(op, operand));
         if (constantValue != null) {
             return new LiteralExprNode(constantValue.toString());
+        }
+
+        if (op.equals("+")) {
+            return operand;
         }
 
         if (op.equals("-") && operand instanceof UnaryExprNode && ((UnaryExprNode) operand).operator.equals("-")) {

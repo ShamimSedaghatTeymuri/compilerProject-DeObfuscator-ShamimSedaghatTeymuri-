@@ -11,7 +11,7 @@ int main() {
         int z2 = 79;
     }
 }
-    if (0 == 2) {
+    if (0) {
         int z3 = 50;
     }
     int v1 = 0;

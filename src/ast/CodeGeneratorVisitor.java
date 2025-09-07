@@ -87,9 +87,14 @@ public class CodeGeneratorVisitor implements ASTVisitor<String> {
 
     @Override
     public String visit(ForNode node) {
-        String init = node.init.accept(this);
-        String cond = node.condition.accept(this);
-        String update = node.update != null ? node.update.accept(this) : "";
+        String init = (node.init != null) ? node.init.accept(this) : "";
+        if (init.endsWith(";")) {
+            init = init.substring(0, init.length() - 1);
+        }
+
+        String cond = (node.condition != null) ? node.condition.accept(this) : "";
+        String update = (node.update != null) ? node.update.accept(this) : "";
+
         return "for (" + init + "; " + cond + "; " + update + ") " + node.body.accept(this);
     }
 

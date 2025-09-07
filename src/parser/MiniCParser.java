@@ -484,7 +484,7 @@ public class MiniCParser extends Parser {
 			setState(72);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << INT) | (1L << CHAR) | (1L << BOOL) | (1L << IF) | (1L << WHILE) | (1L << FOR) | (1L << RETURN) | (1L << PRINTF) | (1L << SCANF) | (1L << TRUE) | (1L << FALSE) | (1L << MINUS) | (1L << NOT) | (1L << SEMI) | (1L << LPAREN) | (1L << LBRACE) | (1L << ID) | (1L << NUMBER) | (1L << CHAR_LITERAL))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << INT) | (1L << CHAR) | (1L << BOOL) | (1L << IF) | (1L << WHILE) | (1L << FOR) | (1L << RETURN) | (1L << PRINTF) | (1L << SCANF) | (1L << TRUE) | (1L << FALSE) | (1L << PLUS) | (1L << MINUS) | (1L << NOT) | (1L << SEMI) | (1L << LPAREN) | (1L << LBRACE) | (1L << ID) | (1L << NUMBER) | (1L << CHAR_LITERAL))) != 0)) {
 				{
 				{
 				setState(69);
@@ -572,6 +572,7 @@ public class MiniCParser extends Parser {
 				break;
 			case TRUE:
 			case FALSE:
+			case PLUS:
 			case MINUS:
 			case NOT:
 			case SEMI:
@@ -677,7 +678,7 @@ public class MiniCParser extends Parser {
 			setState(88);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << TRUE) | (1L << FALSE) | (1L << MINUS) | (1L << NOT) | (1L << LPAREN) | (1L << ID) | (1L << NUMBER) | (1L << CHAR_LITERAL))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << TRUE) | (1L << FALSE) | (1L << PLUS) | (1L << MINUS) | (1L << NOT) | (1L << LPAREN) | (1L << ID) | (1L << NUMBER) | (1L << CHAR_LITERAL))) != 0)) {
 				{
 				setState(87);
 				expr(0);
@@ -894,6 +895,7 @@ public class MiniCParser extends Parser {
 				break;
 			case TRUE:
 			case FALSE:
+			case PLUS:
 			case MINUS:
 			case NOT:
 			case SEMI:
@@ -905,7 +907,7 @@ public class MiniCParser extends Parser {
 				setState(111);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << TRUE) | (1L << FALSE) | (1L << MINUS) | (1L << NOT) | (1L << LPAREN) | (1L << ID) | (1L << NUMBER) | (1L << CHAR_LITERAL))) != 0)) {
+				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << TRUE) | (1L << FALSE) | (1L << PLUS) | (1L << MINUS) | (1L << NOT) | (1L << LPAREN) | (1L << ID) | (1L << NUMBER) | (1L << CHAR_LITERAL))) != 0)) {
 					{
 					setState(110);
 					expr(0);
@@ -922,7 +924,7 @@ public class MiniCParser extends Parser {
 			setState(117);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << TRUE) | (1L << FALSE) | (1L << MINUS) | (1L << NOT) | (1L << LPAREN) | (1L << ID) | (1L << NUMBER) | (1L << CHAR_LITERAL))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << TRUE) | (1L << FALSE) | (1L << PLUS) | (1L << MINUS) | (1L << NOT) | (1L << LPAREN) | (1L << ID) | (1L << NUMBER) | (1L << CHAR_LITERAL))) != 0)) {
 				{
 				setState(116);
 				expr(0);
@@ -934,7 +936,7 @@ public class MiniCParser extends Parser {
 			setState(121);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << TRUE) | (1L << FALSE) | (1L << MINUS) | (1L << NOT) | (1L << LPAREN) | (1L << ID) | (1L << NUMBER) | (1L << CHAR_LITERAL))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << TRUE) | (1L << FALSE) | (1L << PLUS) | (1L << MINUS) | (1L << NOT) | (1L << LPAREN) | (1L << ID) | (1L << NUMBER) | (1L << CHAR_LITERAL))) != 0)) {
 				{
 				setState(120);
 				expr(0);
@@ -995,7 +997,7 @@ public class MiniCParser extends Parser {
 			setState(128);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << TRUE) | (1L << FALSE) | (1L << MINUS) | (1L << NOT) | (1L << LPAREN) | (1L << ID) | (1L << NUMBER) | (1L << CHAR_LITERAL))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << TRUE) | (1L << FALSE) | (1L << PLUS) | (1L << MINUS) | (1L << NOT) | (1L << LPAREN) | (1L << ID) | (1L << NUMBER) | (1L << CHAR_LITERAL))) != 0)) {
 				{
 				setState(127);
 				expr(0);
@@ -1154,6 +1156,7 @@ public class MiniCParser extends Parser {
 		}
 		public TerminalNode NOT() { return getToken(MiniCParser.NOT, 0); }
 		public TerminalNode MINUS() { return getToken(MiniCParser.MINUS, 0); }
+		public TerminalNode PLUS() { return getToken(MiniCParser.PLUS, 0); }
 		public TerminalNode LPAREN() { return getToken(MiniCParser.LPAREN, 0); }
 		public TerminalNode RPAREN() { return getToken(MiniCParser.RPAREN, 0); }
 		public TerminalNode NUMBER() { return getToken(MiniCParser.NUMBER, 0); }
@@ -1166,7 +1169,6 @@ public class MiniCParser extends Parser {
 		public TerminalNode MULT() { return getToken(MiniCParser.MULT, 0); }
 		public TerminalNode DIV() { return getToken(MiniCParser.DIV, 0); }
 		public TerminalNode MOD() { return getToken(MiniCParser.MOD, 0); }
-		public TerminalNode PLUS() { return getToken(MiniCParser.PLUS, 0); }
 		public TerminalNode LT() { return getToken(MiniCParser.LT, 0); }
 		public TerminalNode LE() { return getToken(MiniCParser.LE, 0); }
 		public TerminalNode GT() { return getToken(MiniCParser.GT, 0); }
@@ -1227,7 +1229,7 @@ public class MiniCParser extends Parser {
 				{
 				setState(162);
 				_la = _input.LA(1);
-				if ( !(_la==MINUS || _la==NOT) ) {
+				if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << PLUS) | (1L << MINUS) | (1L << NOT))) != 0)) ) {
 				_errHandler.recoverInline(this);
 				}
 				else {
@@ -1487,7 +1489,7 @@ public class MiniCParser extends Parser {
 			setState(205);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << TRUE) | (1L << FALSE) | (1L << MINUS) | (1L << NOT) | (1L << LPAREN) | (1L << ID) | (1L << NUMBER) | (1L << CHAR_LITERAL))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << TRUE) | (1L << FALSE) | (1L << PLUS) | (1L << MINUS) | (1L << NOT) | (1L << LPAREN) | (1L << ID) | (1L << NUMBER) | (1L << CHAR_LITERAL))) != 0)) {
 				{
 				setState(204);
 				args();
@@ -1690,7 +1692,7 @@ public class MiniCParser extends Parser {
 		"\3\20\3\20\5\20\u00d0\n\20\3\20\3\20\3\21\3\21\3\21\7\21\u00d7\n\21\f"+
 		"\21\16\21\u00da\13\21\3\22\3\22\3\22\3\22\5\22\u00e0\n\22\3\22\3\22\3"+
 		"\22\2\3\34\23\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"\2\t\3\2\5\7\4"+
-		"\2\22\22\37\37\3\2\23\25\3\2\21\22\3\2\3\4\3\2\31\34\3\2\27\30\2\u00fb"+
+		"\2\21\22\37\37\3\2\23\25\3\2\21\22\3\2\3\4\3\2\31\34\3\2\27\30\2\u00fb"+
 		"\2(\3\2\2\2\4-\3\2\2\2\6\66\3\2\2\2\b>\3\2\2\2\nD\3\2\2\2\fF\3\2\2\2\16"+
 		"W\3\2\2\2\20Z\3\2\2\2\22^\3\2\2\2\24g\3\2\2\2\26m\3\2\2\2\30\u0080\3\2"+
 		"\2\2\32\u009e\3\2\2\2\34\u00b0\3\2\2\2\36\u00cc\3\2\2\2 \u00d3\3\2\2\2"+

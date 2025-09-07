@@ -1,5 +1,4 @@
 int func0(int value, int value2){
-    int x0 = 79;
     if ((value > value2)) {
         return value;
 } else {

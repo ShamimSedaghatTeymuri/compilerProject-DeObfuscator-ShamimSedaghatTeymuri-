@@ -27,7 +27,6 @@ int func0(int value){
 int main(){
     int number3 = 10;
     int func0Result = func0(number3);
-    int x0 = 35;
     printf("%d\n", func0Result);
     for (int i = 0;; (i < 0); i = (i + 1)) {
         int loop = (i * 42);

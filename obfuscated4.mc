@@ -8,7 +8,7 @@ int main() {
     if (1 > 2){
         int y0 = 3;
     }
-    int v1 = 6 > 1;
+    int v1 = 6 << 1;
     int v2 = f0(v1);
     if (0) {
         int z0 = 58;

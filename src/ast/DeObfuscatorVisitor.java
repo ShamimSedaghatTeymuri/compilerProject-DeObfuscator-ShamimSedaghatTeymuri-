@@ -373,31 +373,18 @@ public class DeObfuscatorVisitor implements ASTVisitor<ASTNode> {
         }
 
         if (op.equals("+")) {
-            if (isZero(left)) {
-                return right;
-            } else if (isZero(right)) {
-                return left;
-            }
+            if (isZero(left)) return right;
+            if (isZero(right)) return left;
         } else if (op.equals("-")) {
-            if (isZero(right)) {
-                return left;
-            } else if (isZero(left)) {
-                return new UnaryExprNode("-", right);
-            }
+            if (isZero(right)) return left;
+            if (isZero(left)) return new UnaryExprNode("-", right);
         } else if (op.equals("*")) {
-            if (isOne(left)) {
-                return right;
-            } else if (isOne(right)) {
-                return left;
-            } else if (isZero(left) || isZero(right)) {
-                return new LiteralExprNode("0");
-            }
+            if (isOne(left)) return right;
+            if (isOne(right)) return left;
+            if (isZero(left) || isZero(right)) return new LiteralExprNode("0");
         } else if (op.equals("/")) {
-            if (isOne(right)) {
-                return left;
-            } else if (isZero(left)) {
-                return new LiteralExprNode("0");
-            }
+            if (isOne(right)) return left;
+            if (isZero(left)) return new LiteralExprNode("0");
         } else if (op.equals("<<")) {
             if (right instanceof LiteralExprNode) {
                 try {
@@ -406,9 +393,7 @@ public class DeObfuscatorVisitor implements ASTVisitor<ASTNode> {
                         int multiplier = 1 << shift;
                         return new BinaryExprNode(left, "*", new LiteralExprNode(String.valueOf(multiplier)));
                     }
-                } catch (NumberFormatException e) {
-                    // ignore
-                }
+                } catch (NumberFormatException e) {}
             }
         } else if (op.equals(">>")) {
             if (right instanceof LiteralExprNode) {
@@ -418,13 +403,14 @@ public class DeObfuscatorVisitor implements ASTVisitor<ASTNode> {
                         int divisor = 1 << shift;
                         return new BinaryExprNode(left, "/", new LiteralExprNode(String.valueOf(divisor)));
                     }
-                } catch (NumberFormatException e) {
-                    // ignore
-                }
+                } catch (NumberFormatException e) {}
             }
         }
+
         return new BinaryExprNode(left, op, right);
     }
+
+
 
     @Override
     public ASTNode visit(UnaryExprNode node) {

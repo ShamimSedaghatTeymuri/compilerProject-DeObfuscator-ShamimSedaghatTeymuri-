@@ -108,12 +108,13 @@ ioSt
 expr
     : expr op=('*' | '/' | '%') expr
     | expr op=('+' | '-') expr
+    | expr op=('<<' | '>>') expr
     | expr op=('<' | '<=' | '>' | '>=') expr
     | expr op=('==' | '!=') expr
     | expr op=OR expr
     | expr op=AND expr
     | ID ASSIGN expr
-    | (NOT | MINUS) expr  // تغییر برای پشتیبانی از منفی یگانه
+    | (NOT | MINUS) expr
     | LPAREN expr RPAREN
     | ID
     | NUMBER

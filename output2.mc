@@ -3,34 +3,42 @@ int f0(int v0, int v1) {
 		int loop = i * 42;
 	}
     if ((v0 > v1)) {
-        int x0 = 81;
+        if (0) {
+		int z0 = 5;
+	}
         return v0;
-        int x1 = 7;
+        if (0) {
+		int z1 = 82;
+	}
 } else {
-        if (1 > 2){
-		int y0 = 5;
+        if (0) {
+		int z2 = 1;
 	}
         return v1;
-        for (int i = 0; i < 0; i++) {
-		int loop = i * 42;
+        if (1 > 2){
+		int y0 = 7;
 	}
 }
     if (0) {
-		int z0 = 33;
+		int z3 = 56;
 	}
 }
 int main() {
-    int x2 = 11;
+    if (0) {
+		int z4 = 92;
+	}
     int v2 = 5;
-    if (1 > 2){
-		int y1 = 3;
+    if (0) {
+		int z5 = 85;
 	}
     int v3 = 9;
     for (int i = 0; i < 0; i++) {
 		int loop = i * 42;
 	}
     int v4 = f0(v2, v3);
-    int x3 = 66;
+    if (0) {
+		int z6 = 28;
+	}
     printf("%d\n", v4);
     return 0;
 }

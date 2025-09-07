@@ -5,8 +5,8 @@ int func0(int value){
     return (value * value);
 }
 int main(){
-    int number = 1;
-    int func0Result = func0(number);
+    int product = (6 * 2);
+    int func0Result = func0(product);
     printf("%d\n", func0Result);
     return 0;
 }

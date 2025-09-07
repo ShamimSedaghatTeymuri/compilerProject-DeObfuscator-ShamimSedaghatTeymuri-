@@ -1,3 +1,4 @@
+#include <stdio.h>
 int f0(int v0) {
     for (int i = 0; i < 0; i = i + 1) {
         int loop = i * 42;

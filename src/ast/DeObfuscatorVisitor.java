@@ -70,7 +70,6 @@ public class DeObfuscatorVisitor implements ASTVisitor<ASTNode> {
             return funcCall.name + "Result";
         } else if (expr instanceof VarExprNode) {
             VarExprNode var = (VarExprNode) expr;
-
             String type = variableTypes.get(var.name);
             if (type != null) {
                 switch (type) {
@@ -321,12 +320,10 @@ public class DeObfuscatorVisitor implements ASTVisitor<ASTNode> {
         ExprNode newUpdate = node.update != null ? (ExprNode) node.update.accept(this) : null;
         StmtNode newBody = (StmtNode) node.body.accept(this);
 
-        // Check if condition is constant false → حذف کامل حلقه
         if (newCond != null && isConstantFalse(newCond)) {
             return null;
         }
 
-        // Check for common dead loop patterns
         if (newInit instanceof VarDeclNode && newCond != null) {
             VarDeclNode initVar = (VarDeclNode) newInit;
             if (isAlwaysFalseLoop(initVar, newCond)) {

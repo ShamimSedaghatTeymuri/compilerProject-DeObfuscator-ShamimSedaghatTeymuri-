@@ -1,3 +1,4 @@
+#include <stdio.h>
 int func0(int value){
     return (value * value);
 }
@@ -8,4 +9,3 @@ int main(){
     printf("%d\n", diff);
     return 0;
 }
-
